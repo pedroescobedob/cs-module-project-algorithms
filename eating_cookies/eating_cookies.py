@@ -2,8 +2,18 @@
 Input: an integer
 Returns: an integer
 '''
-def eating_cookies(n):
-    # Your code here
+def eating_cookies(n, cache = None):
+    if n < 0:
+        return 0
+
+    if n == 0:
+        return 1
+    elif cache is not None and cache[n] > 0:
+        return cache[n]
+    else:
+        if cache is None:
+            cache = [0 for i in range(n+1)]
+        cache[n] = eating_cookies(n-1, cache) + eating_cookies(n)
 
     pass
 
